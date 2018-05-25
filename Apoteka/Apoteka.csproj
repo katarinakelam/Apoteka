@@ -205,6 +205,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\KlijentVM.cs" />
+    <Compile Include="ViewModels\KorisnikVM.cs" />
+    <Compile Include="ViewModels\LijekVM.cs" />
+    <Compile Include="ViewModels\NabavljacVM.cs" />
+    <Compile Include="ViewModels\NarudzbenicavM.cs" />
+    <Compile Include="ViewModels\ProizvodjacVM.cs" />
+    <Compile Include="ViewModels\RacunVM.cs" />
+    <Compile Include="ViewModels\RadnoMjestoVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -244,7 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
