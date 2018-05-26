@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Apoteka.ViewModels.NarudzbenicavM>
+
+@{
+    ViewBag.Title = "Prikaz narudžbenica";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Prikaz narudžbenica</h2>
+
+<p>
+    @Html.ActionLink("Stvori", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumIvrijemeIzdavanja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdresaDostave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KorisnikNaziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NabavljacNaziv)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatumIvrijemeIzdavanja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdresaDostave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.KorisnikNaziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NabavljacNaziv)
+        </td>
+        <td>
+            @Html.ActionLink("Uredi", "Edit", new {  id=item.NarudzbenicaId  }) |
+            @Html.ActionLink("Izbriši", "Delete", new {  id=item.NarudzbenicaId  })
+        </td>
+    </tr>
+}
+
+</table>

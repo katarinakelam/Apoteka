@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,15 @@ namespace Apoteka.ViewModels
     /// </summary>
     public class NabavljacVM
     {
+        /// <summary>
+        /// Gets or sets the nabavljac identifier.
+        /// </summary>
+        /// <value>
+        /// The nabavljac identifier.
+        /// </value>
+        [JsonIgnore]
+        public int NabavljacId { get; set; }
+
         /// <summary>
         /// Gets or sets the naziv.
         /// </summary>

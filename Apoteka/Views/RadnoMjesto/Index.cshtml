@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Apoteka.ViewModels.RadnoMjestoVM>
+
+@{
+    ViewBag.Title = "Prikaz radnih mjesta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Prikaz radnih mjesta</h2>
+
+<p>
+    @Html.ActionLink("Stvori", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OvlastNarucivanja)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Naziv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OvlastNarucivanja)
+        </td>
+        <td>
+            @Html.ActionLink("Uredi", "Edit", new {  id=item.RadnoMjestoId }) |
+            @Html.ActionLink("Izbriši", "Delete", new { id=item.RadnoMjestoId  })
+        </td>
+    </tr>
+}
+
+</table>

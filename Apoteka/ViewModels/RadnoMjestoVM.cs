@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace Apoteka.ViewModels
 {
@@ -12,6 +13,16 @@ namespace Apoteka.ViewModels
     /// </summary>
     public class RadnoMjestoVM
     {
+
+        /// <summary>
+        /// Gets or sets the radno mjesto identifier.
+        /// </summary>
+        /// <value>
+        /// The radno mjesto identifier.
+        /// </value>
+        [JsonIgnore]
+        public int RadnoMjestoId { get; set; }
+
         /// <summary>
         /// Gets or sets the naziv.
         /// </summary>

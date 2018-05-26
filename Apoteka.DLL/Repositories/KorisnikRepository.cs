@@ -1,4 +1,5 @@
 ﻿using Apoteka.Model.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Apoteka.DLL.Repositories
         /// <param name="context">The context.</param>
         public KorisnikRepository(ApotekaContext context)
         {
-            this.apotekaContext = context;
+            this.apotekaContext = context ?? throw new ArgumentNullException(nameof(context));
         }
 
         #region Methods
@@ -36,7 +37,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public Korisnik Get(int id)
         {
-            return this.apotekaContext.Korisnik.Find(id);
+            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(kr => kr.Narudzbenica).AsNoTracking().Where(k => k.KorisnikId == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -103,7 +104,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IEnumerable<Korisnik> GetAll()
         {
-            return this.apotekaContext.Korisnik.AsEnumerable();
+            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(kr => kr.Narudzbenica).AsNoTracking().AsEnumerable();
         }
 
         /// <summary>
@@ -114,7 +115,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IQueryable<Korisnik> GetAllAsQueryable()
         {
-            return this.apotekaContext.Korisnik.AsQueryable();
+            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(kr => kr.Narudzbenica).AsNoTracking().AsQueryable();
         }
 
         #endregion

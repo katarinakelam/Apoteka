@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 
-namespace Apoteka.DLL.Repositories
+namespace Apoteka.BLL.BusinessServices
 {
     /// <summary>
-    /// Interface for repositories
+    /// Interface for business services
     /// </summary>
     /// <typeparam name="TModel">The type of the model.</typeparam>
-    public interface IRepository<TModel>
+    public interface IService<TModel>
     {
         /// <summary>
         /// Gets model by the specified identifier.
@@ -39,23 +38,17 @@ namespace Apoteka.DLL.Repositories
         /// <summary>
         /// Deletes the specified model.
         /// </summary>
-        /// <param name="model">The model.</param>
-        void Delete(TModel model);
+        /// <param name="id">The identifier.</param>
+        void Delete(int id);
 
         /// <summary>
         /// Gets all models.
         /// </summary>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        IEnumerable<TModel> GetAll();
-
-        /// <summary>
-        /// Gets all instances of model as queryable.
-        /// </summary>
-        /// <returns>
-        /// Returns  all instances of model as queryable.
-        /// </returns>
-        IQueryable<TModel> GetAllAsQueryable();
+        IEnumerable<TModel> GetAll(int page, int pageSize);
     }
 }

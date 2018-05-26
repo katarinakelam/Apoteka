@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Apoteka.ViewModels.ProizvodjacVM>
+
+@{
+    ViewBag.Title = "Prikaz proizvođača";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Stvori", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Naziv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adresa)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adresa)
+            </td>
+            <td>
+                @Html.ActionLink("Uredi", "Edit", new { id = item.ProizvodjacId }) |
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.ProizvodjacId })
+            </td>
+        </tr>
+    }
+
+</table>

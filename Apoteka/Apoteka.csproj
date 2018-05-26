@@ -201,6 +201,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KlijentController.cs" />
+    <Compile Include="Controllers\KorisnikController.cs" />
+    <Compile Include="Controllers\LijekController.cs" />
+    <Compile Include="Controllers\NabavljacController.cs" />
+    <Compile Include="Controllers\NarudzbenicaController.cs" />
+    <Compile Include="Controllers\ProizvodjacController.cs" />
+    <Compile Include="Controllers\RacunController.cs" />
+    <Compile Include="Controllers\RadnoMjestoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -249,6 +257,14 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Klijent\Index.cshtml" />
+    <Content Include="Views\Korisnik\Index.cshtml" />
+    <Content Include="Views\Lijek\Index.cshtml" />
+    <Content Include="Views\Nabavljac\Index.cshtml" />
+    <Content Include="Views\Narudzbenica\Index.cshtml" />
+    <Content Include="Views\Proizvodjac\Index.cshtml" />
+    <Content Include="Views\Racun\Index.cshtml" />
+    <Content Include="Views\RadnoMjesto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

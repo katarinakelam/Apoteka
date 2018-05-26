@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
 
 namespace Apoteka.ViewModels
 {
@@ -12,6 +13,15 @@ namespace Apoteka.ViewModels
     /// </summary>
     public class NarudzbenicavM
     {
+        /// <summary>
+        /// Gets or sets the narudzbenica identifier.
+        /// </summary>
+        /// <value>
+        /// The narudzbenica identifier.
+        /// </value>
+        [JsonIgnore]
+        public int NarudzbenicaId { get; set; }
+
         /// <summary>
         /// Gets or sets the datum ivrijeme izdavanja.
         /// </summary>

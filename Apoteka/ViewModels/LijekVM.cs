@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,15 @@ namespace Apoteka.ViewModels
     /// </summary>
     public class LijekVM
     {
+        /// <summary>
+        /// Gets or sets the lijek identifier.
+        /// </summary>
+        /// <value>
+        /// The lijek identifier.
+        /// </value>
+        [JsonIgnore]
+        public int LijekId { get; set; }
+
         /// <summary>
         /// Gets or sets the trgovacko IME.
         /// </summary>
@@ -56,7 +66,7 @@ namespace Apoteka.ViewModels
         /// <value>
         /// The referenca uputa.
         /// </value>
-        [DisplayName("Referenca na uputu") ]
+        [DisplayName("Referenca na uputu")]
         public string ReferencaUputa { get; set; }
 
         /// <summary>
@@ -76,7 +86,7 @@ namespace Apoteka.ViewModels
         /// The name of the proizvodjac.
         /// </value>
         [DisplayName("Naziv proizvođača")]
-        [Required(ErrorMessage ="Potrebno je unijeti naziv proizvođača")]
+        [Required(ErrorMessage = "Potrebno je unijeti naziv proizvođača")]
         public string ProizvodjacNaziv { get; set; }
     }
 }

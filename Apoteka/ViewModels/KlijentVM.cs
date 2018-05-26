@@ -4,6 +4,7 @@ using System.Linq;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace Apoteka.ViewModels
 {
@@ -12,6 +13,15 @@ namespace Apoteka.ViewModels
     /// </summary>
     public class KlijentVM
     {
+        /// <summary>
+        /// Gets or sets the klijent identifier.
+        /// </summary>
+        /// <value>
+        /// The klijent identifier.
+        /// </value>
+        [JsonIgnore]
+        public int KlijentId { get; set; }
+
         /// <summary>
         /// Gets or sets the IME.
         /// </summary>
