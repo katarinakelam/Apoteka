@@ -9,11 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="AutoMapper\" />
-    <Folder Include="BusinessModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Apoteka.DLL\Apoteka.DLL.csproj" />
   </ItemGroup>
 
