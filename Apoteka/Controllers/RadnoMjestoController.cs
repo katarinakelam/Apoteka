@@ -16,31 +16,31 @@ namespace Apoteka.Controllers
     /// Lijek MVC Controller
     /// </summary>
     /// <seealso cref="System.Web.Mvc.Controller" />
-    public class ProizvodjacController : Controller
+    public class RadnoMjestoController : Controller
     {
         #region Properties
         private ApotekaContext apotekaContext;
-        private readonly ProizvodjacService proizvodjacService;
-        private readonly ProizvodjacVMService vmService;
+        private readonly radnoMjestoServiceService radnoMjestoService;
+        private readonly RadnoMjestoVMService vmService;
         #endregion
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="ProizvodjacController"/> class.
+        /// Initializes a new instance of the <see cref="RadnoMjestoController"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
         /// <param name="repository">The repository.</param>
-        public ProizvodjacController()
+        public RadnoMjestoController()
         {
             this.apotekaContext = new ApotekaContext();
-            this.proizvodjacService = new ProizvodjacService(apotekaContext);
-            this.vmService = new ProizvodjacVMService(apotekaContext);
+            this.radnoMjestoService = new RadnoMjestoService(apotekaContext);
+            this.vmService = new RadnoMjestoVMService(apotekaContext);
         }
         #endregion
         // GET: Klijent
         public ActionResult Index()
         {
-            var proizvodjaci = this.proizvodjacService.GetAll();
+            var proizvodjaci = this.radnoMjestoService.GetAll();
 
             var vm = this.vmService.ListModelsToVMs(proizvodjaci.ToList());
             return View(vm);
@@ -54,12 +54,12 @@ namespace Apoteka.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ProizvodjacVM vm)
+        public ActionResult Create(RadnoMjestoVM vm)
         {
             try
             {
                 var model = this.vmService.VMToModel(vm);
-                this.proizvodjacService.Create(model);
+                this.radnoMjestoService.Create(model);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -73,7 +73,7 @@ namespace Apoteka.Controllers
         {
             try
             {
-                this.proizvodjacService.Delete(id);
+                this.radnoMjestoService.Delete(id);
             }
             catch (Exception exc)
             {
@@ -85,10 +85,10 @@ namespace Apoteka.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var proizvodjac = this.proizvodjacService.Get(id);
+            var proizvodjac = this.radnoMjestoService.Get(id);
             if (proizvodjac == null)
             {
-                return HttpNotFound("Ne postoji proizvodjac s id-em: " + id);
+                return HttpNotFound("Ne postoji radno mjesto s id-em: " + id);
             }
             else
             {
@@ -99,19 +99,19 @@ namespace Apoteka.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ProizvodjacVM vm)
+        public ActionResult Edit(RadnoMjestoVM vm)
         {
             try
             {
-                var korisnik = this.proizvodjacService.Get(vm.ProizvodjacId);
+                var korisnik = this.radnoMjestoService.Get(vm.RadnoMjestoId);
                 if (korisnik == null)
                 {
-                    return HttpNotFound("Neispravan proizvodjac: " + vm.ProizvodjacId);
+                    return HttpNotFound("Neispravno radno mjesto: " + vm.RadnoMjestoId);
                 }
                 try
                 {
                     var model = this.vmService.VMToModel(vm);
-                    this.proizvodjacService.Update(model);
+                    this.radnoMjestoService.Update(model);
                     return RedirectToAction(nameof(Index));
                 }
                 catch
@@ -121,7 +121,7 @@ namespace Apoteka.Controllers
             }
             catch
             {
-                return RedirectToAction(nameof(Edit), vm.ProizvodjacId);
+                return RedirectToAction(nameof(Edit), vm.RadnoMjestoId);
             }
         }
     }

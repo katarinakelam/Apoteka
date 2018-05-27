@@ -212,6 +212,7 @@
     <Compile Include="Controllers\NarudzbenicaController.cs" />
     <Compile Include="Controllers\ProizvodjacController.cs" />
     <Compile Include="Controllers\RacunController.cs" />
+    <Compile Include="Controllers\RadnoMjestoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +224,7 @@
     <Compile Include="ViewModels\NarudzbenicaVM.cs" />
     <Compile Include="ViewModels\ProizvodjacVM.cs" />
     <Compile Include="ViewModels\RacunVM.cs" />
+    <Compile Include="ViewModels\RadnoMjestoVM.cs" />
     <Compile Include="VMServices\KlijentVMService.cs" />
     <Compile Include="VMServices\KorisnikVMService.cs" />
     <Compile Include="VMServices\LijekVMService.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="VMServices\NarudzbenicaVMService.cs" />
     <Compile Include="VMServices\ProizvodjacVMService.cs" />
     <Compile Include="VMServices\RacunVMService.cs" />
+    <Compile Include="VMServices\RadnoMjestoVMService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -290,6 +293,9 @@
     <Content Include="Views\Proizvodjac\Create.cshtml" />
     <Content Include="Views\Racun\Edit.cshtml" />
     <Content Include="Views\Racun\Create.cshtml" />
+    <Content Include="Views\RadnoMjesto\Index.cshtml" />
+    <Content Include="Views\RadnoMjesto\Create.cshtml" />
+    <Content Include="Views\RadnoMjesto\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
