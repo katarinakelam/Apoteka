@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Apoteka.BLL.BusinessModels
+namespace Apoteka.DTO
 {
     /// <summary>
     /// Nabavljac view model

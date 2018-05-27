@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Apoteka.ViewModels
+namespace Apoteka.DTO
 {
     /// <summary>
     /// Narudzbenica view model

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using Newtonsoft.Json;
 
-namespace Apoteka.BLL.BusinessModels
+namespace Apoteka.DTO
 {
     /// <summary>
     /// Klijent view model

@@ -210,6 +210,14 @@
     <Compile Include="Controllers\ProizvodjacController.cs" />
     <Compile Include="Controllers\RacunController.cs" />
     <Compile Include="Controllers\RadnoMjestoController.cs" />
+    <Compile Include="DTO\KlijentDTO.cs" />
+    <Compile Include="DTO\KorisnikDTO.cs" />
+    <Compile Include="DTO\LijekDTO.cs" />
+    <Compile Include="DTO\NabavljacDTO.cs" />
+    <Compile Include="DTO\NarudzbenicaDTO.cs" />
+    <Compile Include="DTO\ProizvodjacDTO.cs" />
+    <Compile Include="DTO\RacunDTO.cs" />
+    <Compile Include="DTO\RadnoMjestoDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

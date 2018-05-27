@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Apoteka.BLL.BusinessModels
+namespace Apoteka.DTO
 {
     /// <summary>
     /// Radno mjesto view model
