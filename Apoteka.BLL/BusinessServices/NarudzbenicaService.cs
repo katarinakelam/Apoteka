@@ -81,9 +81,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IEnumerable<Narudzbenica> GetAll(int page, int pageSize)
+        public IQueryable<Narudzbenica> GetAll(int page, int pageSize)
         {
-            return this.narudzbenicaRepository.GetAll().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.narudzbenicaRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>

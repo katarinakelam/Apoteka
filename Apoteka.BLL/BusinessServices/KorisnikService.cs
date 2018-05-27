@@ -39,6 +39,7 @@ namespace Apoteka.BLL.BusinessServices
             this.korisnikRepository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
         #endregion
+
         #region Methods
         /// <summary>
         /// Creates the specified model.
@@ -80,9 +81,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IEnumerable<Korisnik> GetAll(int page, int pageSize)
+        public IQueryable<Korisnik> GetAll(int page, int pageSize)
         {
-            return this.korisnikRepository.GetAll().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.korisnikRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>

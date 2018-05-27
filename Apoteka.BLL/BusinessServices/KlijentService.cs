@@ -1,4 +1,5 @@
-﻿using Apoteka.DLL;
+﻿using Apoteka.BLL.BusinessModels;
+using Apoteka.DLL;
 using Apoteka.DLL.Repositories;
 using Apoteka.Model.Models;
 using System;
@@ -89,10 +90,49 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IEnumerable<Klijent> GetAll(int page, int pageSize)
+        public IQueryable<Klijent> GetAll(int page, int pageSize)
         {
-            return this.klijentRepository.GetAll().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.klijentRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
         }
+
+        /// <summary>
+        /// Models to dto.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Returns mapped model to dto
+        /// </returns>
+        public KlijentDTO ModelToDTO(Klijent model)
+        {
+            var dto = new KlijentDTO
+            {
+                Ime = model.Ime,
+                Prezime = model.Prezime,
+                DatumRodjenja = (DateTime) model.DatumRodjenja,
+                BrojZdravstveneIskaznice = (int)model.BrojZdravstveneIskaznice,
+                KlijentId = model.KlijentId
+            };
+            return dto;
+        }
+
+        /// <summary>
+        /// Maps the models to dtos.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns>
+        /// Returns mapped models to dtos
+        /// </returns>
+        public List<KlijentDTO> ListModelsToDTOs(List<Klijent> model)
+        {
+            var klijenti = new List<KlijentDTO>();
+            foreach (var klijent in model)
+            {
+                klijenti.Add(this.ModelToDTO(klijent));
+            }
+
+            return klijenti;
+        }
+
         #endregion
     }
 }

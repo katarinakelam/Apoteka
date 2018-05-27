@@ -81,9 +81,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IEnumerable<Nabavljac> GetAll(int page, int pageSize)
+        public IQueryable<Nabavljac> GetAll(int page, int pageSize)
         {
-            return this.nabavljacRepository.GetAll().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.nabavljacRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>

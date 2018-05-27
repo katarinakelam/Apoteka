@@ -81,9 +81,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IEnumerable<Racun> GetAll(int page, int pageSize)
+        public IQueryable<Racun> GetAll(int page, int pageSize)
         {
-            return this.racunRepository.GetAll().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.racunRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>

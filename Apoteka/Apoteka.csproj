@@ -197,6 +197,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AppSettings.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -217,8 +218,9 @@
     <Compile Include="ViewModels\KorisnikVM.cs" />
     <Compile Include="ViewModels\LijekVM.cs" />
     <Compile Include="ViewModels\NabavljacVM.cs" />
-    <Compile Include="ViewModels\NarudzbenicavM.cs" />
-    <Compile Include="ViewModels\ProizvodjacVM.cs" />
+    <Compile Include="ViewModels\NaruzdbenicaVM.cs" />
+    <Compile Include="ViewModels\PagingInfo.cs" />
+    <Compile Include="ViewModels\ProizvodjacVMc.cs" />
     <Compile Include="ViewModels\RacunVM.cs" />
     <Compile Include="ViewModels\RadnoMjestoVM.cs" />
   </ItemGroup>
@@ -268,6 +270,7 @@
     <Content Include="Views\Racun\Index.cshtml" />
     <Content Include="Views\RadnoMjesto\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Klijent\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -283,6 +286,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Apoteka.BLL\Apoteka.BLL.csproj">
+      <Project>{D0110B63-D4BC-4CDA-98A8-62439A894997}</Project>
+      <Name>Apoteka.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apoteka.DLL\Apoteka.DLL.csproj">
+      <Project>{55949D86-5AD9-4ABA-AC60-F95A19B50628}</Project>
+      <Name>Apoteka.DLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Apoteka.Model\Apoteka.Model.csproj">
+      <Project>{56E86765-17DF-4CF3-B1B6-6E1E04C2C518}</Project>
+      <Name>Apoteka.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

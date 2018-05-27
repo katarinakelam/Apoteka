@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Apoteka.ViewModels
 {
-    public class RacunVM
+    public class ProizvodjacVMc
     {
     }
 }

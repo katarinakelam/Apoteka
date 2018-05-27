@@ -81,9 +81,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IEnumerable<Lijek> GetAll(int page, int pageSize)
+        public IQueryable<Lijek> GetAll(int page, int pageSize)
         {
-            return this.lijekRepository.GetAll().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.lijekRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         /// <summary>

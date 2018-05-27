@@ -1,26 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Web;
 using Newtonsoft.Json;
 
-namespace Apoteka.ViewModels
+namespace Apoteka.BLL.BusinessModels
 {
     /// <summary>
-    /// Proizvodjac view model
+    /// Radno mjesto view model
     /// </summary>
-    public class ProizvodjacVM
+    public class RadnoMjestoDTO
     {
+
         /// <summary>
-        /// Gets or sets the proizvodjac identifier.
+        /// Gets or sets the radno mjesto identifier.
         /// </summary>
         /// <value>
-        /// The proizvodjac identifier.
+        /// The radno mjesto identifier.
         /// </value>
         [JsonIgnore]
-        public int ProizvodjacId { get; set; }
+        public int RadnoMjestoId { get; set; }
 
         /// <summary>
         /// Gets or sets the naziv.
@@ -28,16 +29,16 @@ namespace Apoteka.ViewModels
         /// <value>
         /// The naziv.
         /// </value>
-        [Required(ErrorMessage = "Potrebno je unijeti naziv proizvođača")]
+        [Required(ErrorMessage = "Potrebno je unijeti naziv radnog mjesta")]
         public string Naziv { get; set; }
 
         /// <summary>
-        /// Gets or sets the adresa.
+        /// Gets or sets the ovlast narucivanja.
         /// </summary>
         /// <value>
-        /// The adresa.
+        /// The ovlast narucivanja.
         /// </value>
-        [Required(ErrorMessage = "Potrebno je unijeti adresu proizvođača")]
-        public string Adresa { get; set; }
+        [Required(ErrorMessage = "Potrebno je unijeti ovlast naručivanja")]
+        public bool OvlastNarucivanja { get; set; }
     }
 }
