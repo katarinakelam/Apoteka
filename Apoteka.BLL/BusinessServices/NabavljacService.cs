@@ -47,6 +47,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <param name="model">The model.</param>
         public void Create(Nabavljac model)
         {
+            var lastId = this.nabavljacRepository.GetLast();
+            model.NabavljacId = lastId + 1;
+
             this.nabavljacRepository.Create(model);
         }
 
@@ -81,9 +84,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IQueryable<Nabavljac> GetAll(int page, int pageSize)
+        public IQueryable<Nabavljac> GetAll()
         {
-            return this.nabavljacRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.nabavljacRepository.GetAllAsQueryable();
         }
 
         /// <summary>

@@ -47,6 +47,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <param name="model">The model.</param>
         public void Create(Racun model)
         {
+            var lastId = this.racunRepository.GetLast();
+            model.RacunId = lastId + 1;
+
             this.racunRepository.Create(model);
         }
 
@@ -81,9 +84,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IQueryable<Racun> GetAll(int page, int pageSize)
+        public IQueryable<Racun> GetAll()
         {
-            return this.racunRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.racunRepository.GetAllAsQueryable();
         }
 
         /// <summary>

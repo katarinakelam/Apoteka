@@ -108,6 +108,16 @@ namespace Apoteka.DLL.Repositories
             }
         }
 
+        /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        public int GetLast()
+        {
+            return this.apotekaContext.RadnoMjesto.Max(k => k.RadnoMjestoId);
+        }
         #endregion
 
     }

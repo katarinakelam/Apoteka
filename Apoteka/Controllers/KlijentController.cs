@@ -1,8 +1,8 @@
-﻿using Apoteka.BLL.BusinessModels;
-using Apoteka.BLL.BusinessServices;
+﻿using Apoteka.BLL.BusinessServices;
 using Apoteka.DLL;
 using Apoteka.Model.Models;
 using Apoteka.ViewModels;
+using Apoteka.VMServices;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -19,9 +19,9 @@ namespace Apoteka.Controllers
     public class KlijentController : Controller
     {
         #region Properties
-        private readonly ApotekaContext apotekaContext;
-        private readonly AppSettings settings;
+        private ApotekaContext apotekaContext;
         private readonly KlijentService klijentService;
+        private readonly KlijentVMService vmService;
         #endregion
 
         #region Constructors
@@ -29,73 +29,21 @@ namespace Apoteka.Controllers
         /// Initializes a new instance of the <see cref="KlijentController"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public KlijentController(ApotekaContext context, IOptionsSnapshot<AppSettings> settings)
-            : this(context, settings, new KlijentService(context))
-        { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="KlijentController"/> class.
-        /// </summary>
-        /// <param name="context">The context.</param>
         /// <param name="repository">The repository.</param>
-        public KlijentController(ApotekaContext context, IOptionsSnapshot<AppSettings> settings, KlijentService service)
+        public KlijentController()
         {
-            this.apotekaContext = context ?? throw new ArgumentNullException(nameof(context));
-            this.settings = settings.Value ?? throw new ArgumentNullException(nameof(settings.Value));
-            this.klijentService = service ?? throw new ArgumentNullException(nameof(service));
+            this.apotekaContext = new ApotekaContext();
+            this.klijentService = new KlijentService(apotekaContext);
+            this.vmService = new KlijentVMService();
         }
         #endregion
 
         // GET: Klijent
-        public ActionResult Index(int page = 1, int sort = 1, bool ascending = false)
+        public ActionResult Index()
         {
-            var klijenti = this.klijentService.GetAll(page, settings.PageSize);
+            var klijenti = this.klijentService.GetAll();
 
-            var pagingInfo = new PagingInfo
-            {
-                CurrentPage = page,
-                Sort = 1,
-                Ascending = ascending,
-                ItemsPerPage = settings.PageSize,
-                TotalItems = klijenti.Count()
-            };
-
-            if (pagingInfo.CurrentPage > pagingInfo.TotalPages)
-            {
-                return RedirectToAction(nameof(Index), new { page = pagingInfo.TotalPages, sort, ascending });
-            }
-
-            System.Linq.Expressions.Expression<Func<Klijent, object>> orderSelector = null;
-            switch (sort)
-            {
-                case 1:
-                    orderSelector = n => n.Ime;
-                    break;
-                case 2:
-                    orderSelector = n => n.Prezime;
-                    break;
-                case 3:
-                    orderSelector = n => n.DatumRodjenja;
-                    break;
-                case 4:
-                    orderSelector = n => n.BrojZdravstveneIskaznice;
-                    break;
-            }
-            if (orderSelector != null)
-            {
-                klijenti = ascending ?
-                       klijenti.OrderBy(orderSelector) :
-                       klijenti.OrderByDescending(orderSelector);
-            }
-
-            var klijentiDTO = this.klijentService.ListModelsToDTOs(klijenti.ToList());
-
-            var vm = new KlijentVM
-            {
-                Klijenti = klijentiDTO,
-                PagingInfo = pagingInfo
-            };
-
+            var vm = this.vmService.ListModelsToVMs(klijenti.ToList());
             return View(vm);
         }
 
@@ -103,6 +51,79 @@ namespace Apoteka.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(KlijentVM vm)
+        {
+            try
+            {
+                var model = this.vmService.VMToModel(vm);
+                this.klijentService.Create(model);
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View(vm);
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                this.klijentService.Delete(id);
+            }
+            catch (Exception exc)
+            {
+                HttpNotFound(exc.Message);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var klijent = this.klijentService.Get(id);
+            if (klijent == null)
+            {
+                return HttpNotFound("Ne postoji klijent s id-em: " + id);
+            }
+            else
+            {
+                var vm = this.vmService.ModelToVM(klijent);
+                return View(vm);
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(KlijentVM vm)
+        {
+            try
+            {
+                var klijent = this.klijentService.Get(vm.KlijentId);
+                if (klijent == null)
+                {
+                    return HttpNotFound("Neispravan klijent: " + vm.KlijentId);
+                }
+                try
+                {
+                    var model = this.vmService.VMToModel(vm);
+                    this.klijentService.Update(model);
+                    return RedirectToAction(nameof(Index));
+                }
+                catch
+                {
+                    return View(vm);
+                }
+            }
+            catch
+            {
+                return RedirectToAction(nameof(Edit), vm.KlijentId);
+            }
         }
     }
 }

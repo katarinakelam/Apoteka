@@ -49,6 +49,6 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        IQueryable<TModel> GetAll(int page, int pageSize);
+        IQueryable<TModel> GetAll();
     }
 }

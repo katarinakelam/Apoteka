@@ -47,6 +47,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <param name="model">The model.</param>
         public void Create(Proizvodjac model)
         {
+            var lastId = this.proizvodjacRepository.GetLast();
+            model.ProizvodjacId = lastId + 1;
+
             this.proizvodjacRepository.Create(model);
         }
 
@@ -81,9 +84,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IQueryable<Proizvodjac> GetAll(int page, int pageSize)
+        public IQueryable<Proizvodjac> GetAll()
         {
-            return this.proizvodjacRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.proizvodjacRepository.GetAllAsQueryable();
         }
 
         /// <summary>

@@ -108,6 +108,16 @@ namespace Apoteka.DLL.Repositories
             return this.apotekaContext.Klijent.Include(k => k.Racun).AsNoTracking().AsQueryable();
         }
 
+        /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        public int GetLast()
+        {
+            return this.apotekaContext.Klijent.Max(k => k.KlijentId);
+        }
         #endregion
     }
 }

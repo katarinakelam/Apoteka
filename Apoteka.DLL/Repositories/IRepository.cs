@@ -22,6 +22,14 @@ namespace Apoteka.DLL.Repositories
         TModel Get(int id);
 
         /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        int GetLast();
+
+        /// <summary>
         /// Updates the specified model.
         /// </summary>
         /// <param name="model">The model.</param>

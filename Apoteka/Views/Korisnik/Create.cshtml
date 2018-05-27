@@ -1,22 +1,21 @@
-﻿@model Apoteka.ViewModels.KlijentVM
+﻿@model Apoteka.ViewModels.KorisnikVM
 
 @{
-    ViewBag.Title = "Stvaranje novog klijenta";
+    ViewBag.Title = "Stvaranje novog korisnika";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Stvaranje novog klijenta</h2>
+<h2>Stvaranje novog korisnika</h2>
 
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
-    <div class="form-group">
-        <h4>Klijent</h4>
+    
+    <div class="form-horizontal">
+        <h4>KorisnikVM</h4>
         <hr />
-        @Html.HiddenFor(model => model.KlijentId)
-        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
             @Html.LabelFor(model => model.Ime, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -37,28 +36,29 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DatumRodjenja, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DatumRodjenja, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.EditorFor(model => model.DatumRodjenja, new { htmlAttributes = new { @class = "form-control", @type="date" } })
                 @Html.ValidationMessageFor(model => model.DatumRodjenja, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.BrojZdravstveneIskaznice, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RadnoMjestoNaziv, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BrojZdravstveneIskaznice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BrojZdravstveneIskaznice, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.RadnoMjestoNaziv, ViewBag.RadnaMjesta as SelectList)
+                @Html.ValidationMessageFor(model => model.RadnoMjestoNaziv, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Stvori" class="btn btn-default" />
             </div>
         </div>
+    </div>
 }
 
 <div>
-    @Html.ActionLink("Natrag na prikaz klijenata", "Index")
+    @Html.ActionLink("Natrag na prikaz", "Index")
 </div>
 
     @Scripts.Render("~/bundles/jqueryval")

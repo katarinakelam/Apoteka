@@ -80,7 +80,7 @@ namespace Apoteka.DLL.Repositories
         /// <exception cref="NotImplementedException"></exception>
         public Lijek Get(int id)
         {
-            return this.apotekaContext.Lijek.Include(k => k.NarudzbenicaLijek).Include(kr => kr.RacunLijek).AsNoTracking().Where(k => k.LijekId == id).FirstOrDefault();
+            return this.apotekaContext.Lijek.Include(k => k.NarudzbenicaLijek).Include(k => k.Proizvodjac).Include(kr => kr.RacunLijek).AsNoTracking().Where(k => k.LijekId == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -92,7 +92,7 @@ namespace Apoteka.DLL.Repositories
         /// <exception cref="NotImplementedException"></exception>
         public IEnumerable<Lijek> GetAll()
         {
-            return this.apotekaContext.Lijek.Include(k => k.NarudzbenicaLijek).Include(kr => kr.RacunLijek).AsNoTracking().AsEnumerable();
+            return this.apotekaContext.Lijek.Include(k => k.NarudzbenicaLijek).Include(k => k.Proizvodjac).Include(kr => kr.RacunLijek).AsNoTracking().AsEnumerable();
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Apoteka.DLL.Repositories
         /// <exception cref="NotImplementedException"></exception>
         public IQueryable<Lijek> GetAllAsQueryable()
         {
-            return this.apotekaContext.Lijek.Include(k => k.NarudzbenicaLijek).Include(kr => kr.RacunLijek).AsNoTracking().AsQueryable();
+            return this.apotekaContext.Lijek.Include(k => k.NarudzbenicaLijek).Include(k => k.Proizvodjac).Include(kr => kr.RacunLijek).AsNoTracking().AsQueryable();
         }
 
         /// <summary>
@@ -119,6 +119,17 @@ namespace Apoteka.DLL.Repositories
                 this.apotekaContext.Lijek.Update(model);
                 this.apotekaContext.SaveChanges();
             }
+        }
+
+        /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        public int GetLast()
+        {
+            return this.apotekaContext.Lijek.Max(k => k.LijekId);
         }
         #endregion
     }

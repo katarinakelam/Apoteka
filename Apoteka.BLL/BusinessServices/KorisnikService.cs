@@ -47,6 +47,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <param name="model">The model.</param>
         public void Create(Korisnik model)
         {
+            var lastId = this.korisnikRepository.GetLast();
+            model.KorisnikId = lastId + 1;
+
             this.korisnikRepository.Create(model);
         }
 
@@ -81,9 +84,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IQueryable<Korisnik> GetAll(int page, int pageSize)
+        public IQueryable<Korisnik> GetAll()
         {
-            return this.korisnikRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.korisnikRepository.GetAllAsQueryable();
         }
 
         /// <summary>

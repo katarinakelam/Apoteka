@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Apoteka.ViewModels.NarudzbenicavM>
+﻿@model IEnumerable<Apoteka.ViewModels.NarudzbenicaVM>
 
 @{
     ViewBag.Title = "Prikaz narudžbenica";
@@ -13,16 +13,15 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.DatumIvrijemeIzdavanja)
+           Datum i vrijeme izdavanja
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AdresaDostave)
+           Adresa dostave
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.KorisnikNaziv)
-        </th>
+           Korisnik
         <th>
-            @Html.DisplayNameFor(model => model.NabavljacNaziv)
+            Nabavljač
         </th>
         <th></th>
     </tr>

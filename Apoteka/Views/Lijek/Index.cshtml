@@ -13,57 +13,58 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TrgovackoIme)
+            Trgovačko Ime
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FarmaceutskoIme)
+            Farmaceutsko Ime
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Jacina)
+            Jačina
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cijena)
+            Cijena
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReferencaUputa)
+            Referenca na uputu
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Kolicina)
+            Količina
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ProizvodjacNaziv)
+            Proizvođač
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrgovackoIme)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FarmaceutskoIme)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Jacina)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cijena)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReferencaUputa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Kolicina)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProizvodjacNaziv)
-        </td>
-        <td>
-            @Html.ActionLink("Uredi", "Edit", new {  id=item.LijekId  }) |
-            @Html.ActionLink("Izbriši", "Delete", new {  id=item.LijekId  })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrgovackoIme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FarmaceutskoIme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jacina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cijena)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReferencaUputa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kolicina)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProizvodjacNaziv)
+            </td>
+            <td>
+                @Html.ActionLink("Uredi", "Edit", new { id = item.LijekId }) |
+                @Html.ActionLink("Izbriši", "Delete", new { id = item.LijekId })
+            </td>
+        </tr>
+    }
 
 </table>

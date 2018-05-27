@@ -37,7 +37,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public Nabavljac Get(int id)
         {
-            return this.apotekaContext.Nabavljac.Include(n => n.Narudzbenica).AsNoTracking().Find(id);
+            return this.apotekaContext.Nabavljac.Include(n => n.Narudzbenica).AsNoTracking().Where(n => n.NabavljacId == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -108,6 +108,16 @@ namespace Apoteka.DLL.Repositories
             return this.apotekaContext.Nabavljac.Include(n => n.Narudzbenica).AsNoTracking().AsQueryable();
         }
 
+        /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        public int GetLast()
+        {
+            return this.apotekaContext.Nabavljac.Max(k => k.NabavljacId);
+        }
         #endregion
     }
 }

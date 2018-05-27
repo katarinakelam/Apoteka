@@ -36,7 +36,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public Narudzbenica Get(int id)
         {
-            return this.apotekaContext.Narudzbenica.Include(n => n.NarudzbenicaLijek).AsNoTracking().Where(n => n.NarudzbenicaId == id).FirstOrDefault();
+            return this.apotekaContext.Narudzbenica.Include(n => n.Korisnik).Include(n => n.Nabavljac).Include(n => n.NarudzbenicaLijek).AsNoTracking().Where(n => n.NarudzbenicaId == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IEnumerable<Narudzbenica> GetAll()
         {
-            return this.apotekaContext.Narudzbenica.Include(n => n.NarudzbenicaLijek).AsNoTracking().AsEnumerable();
+            return this.apotekaContext.Narudzbenica.Include(n => n.Korisnik).Include(n => n.Nabavljac).Include(n => n.NarudzbenicaLijek).AsNoTracking().AsEnumerable();
         }
 
         /// <summary>
@@ -104,9 +104,19 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IQueryable<Narudzbenica> GetAllAsQueryable()
         {
-            return this.apotekaContext.Narudzbenica.Include(n => n.NarudzbenicaLijek).AsNoTracking().AsQueryable();
+            return this.apotekaContext.Narudzbenica.Include(n => n.Korisnik).Include(n => n.Nabavljac).Include(n => n.NarudzbenicaLijek).AsNoTracking().AsQueryable();
         }
 
+        /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        public int GetLast()
+        {
+            return this.apotekaContext.Narudzbenica.Max(k => k.NarudzbenicaId);
+        }
         #endregion
     }
 }

@@ -6,21 +6,21 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace Apoteka.DTO
+namespace Apoteka.ViewModels
 {
     /// <summary>
-    /// Racun view model
+    /// Narudzbenica view model
     /// </summary>
-    public class RacunDTO
+    public class NarudzbenicaVM
     {
         /// <summary>
-        /// Gets or sets the racun identifier.
+        /// Gets or sets the narudzbenica identifier.
         /// </summary>
         /// <value>
-        /// The racun identifier.
+        /// The narudzbenica identifier.
         /// </value>
         [JsonIgnore]
-        public int RacunId { get; set; }
+        public int NarudzbenicaId { get; set; }
 
         /// <summary>
         /// Gets or sets the datum ivrijeme izdavanja.
@@ -33,6 +33,16 @@ namespace Apoteka.DTO
         public DateTime DatumIvrijemeIzdavanja { get; set; }
 
         /// <summary>
+        /// Gets or sets the adresa dostave.
+        /// </summary>
+        /// <value>
+        /// The adresa dostave.
+        /// </value>
+        [Required(ErrorMessage = "Potrebno je unijeti adresu dostave")]
+        [DisplayName("Adresa dostave")]
+        public string AdresaDostave { get; set; }
+
+        /// <summary>
         /// Gets or sets the korisnik.
         /// </summary>
         /// <value>
@@ -43,13 +53,13 @@ namespace Apoteka.DTO
         public string KorisnikNaziv { get; set; }
 
         /// <summary>
-        /// Gets or sets the klijent.
+        /// Gets or sets the nabavljac.
         /// </summary>
         /// <value>
-        /// The klijent.
+        /// The nabavljac.
         /// </value>
-        [Required(ErrorMessage = "Potrebno je unijeti klijenta")]
-        [DisplayName("Klijent")]
-        public string KlijentNaziv { get; set; }
+        [Required(ErrorMessage = "Potrebno je unijeti nabavljača")]
+        [DisplayName("Nabavljač")]
+        public string NabavljacNaziv { get; set; }
     }
 }

@@ -47,6 +47,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <param name="model">The model.</param>
         public void Create(Lijek model)
         {
+            var lastId = this.lijekRepository.GetLast();
+            model.LijekId = lastId + 1;
+
             this.lijekRepository.Create(model);
         }
 
@@ -81,9 +84,9 @@ namespace Apoteka.BLL.BusinessServices
         /// <returns>
         /// Returns all instances of model
         /// </returns>
-        public IQueryable<Lijek> GetAll(int page, int pageSize)
+        public IQueryable<Lijek> GetAll()
         {
-            return this.lijekRepository.GetAllAsQueryable().Skip((page - 1) * pageSize).Take(pageSize);
+            return this.lijekRepository.GetAllAsQueryable();
         }
 
         /// <summary>

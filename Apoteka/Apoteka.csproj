@@ -59,6 +59,9 @@
     <Reference Include="Microsoft.EntityFrameworkCore.Relational, Version=2.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.EntityFrameworkCore.Relational.2.0.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.Relational.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.EntityFrameworkCore.SqlServer, Version=2.0.3.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.SqlServer.2.0.3\lib\netstandard2.0\Microsoft.EntityFrameworkCore.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
     </Reference>
@@ -209,15 +212,6 @@
     <Compile Include="Controllers\NarudzbenicaController.cs" />
     <Compile Include="Controllers\ProizvodjacController.cs" />
     <Compile Include="Controllers\RacunController.cs" />
-    <Compile Include="Controllers\RadnoMjestoController.cs" />
-    <Compile Include="DTO\KlijentDTO.cs" />
-    <Compile Include="DTO\KorisnikDTO.cs" />
-    <Compile Include="DTO\LijekDTO.cs" />
-    <Compile Include="DTO\NabavljacDTO.cs" />
-    <Compile Include="DTO\NarudzbenicaDTO.cs" />
-    <Compile Include="DTO\ProizvodjacDTO.cs" />
-    <Compile Include="DTO\RacunDTO.cs" />
-    <Compile Include="DTO\RadnoMjestoDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -226,11 +220,16 @@
     <Compile Include="ViewModels\KorisnikVM.cs" />
     <Compile Include="ViewModels\LijekVM.cs" />
     <Compile Include="ViewModels\NabavljacVM.cs" />
-    <Compile Include="ViewModels\NaruzdbenicaVM.cs" />
-    <Compile Include="ViewModels\PagingInfo.cs" />
-    <Compile Include="ViewModels\ProizvodjacVMc.cs" />
+    <Compile Include="ViewModels\NarudzbenicaVM.cs" />
+    <Compile Include="ViewModels\ProizvodjacVM.cs" />
     <Compile Include="ViewModels\RacunVM.cs" />
-    <Compile Include="ViewModels\RadnoMjestoVM.cs" />
+    <Compile Include="VMServices\KlijentVMService.cs" />
+    <Compile Include="VMServices\KorisnikVMService.cs" />
+    <Compile Include="VMServices\LijekVMService.cs" />
+    <Compile Include="VMServices\NabavljacVMService.cs" />
+    <Compile Include="VMServices\NarudzbenicaVMService.cs" />
+    <Compile Include="VMServices\ProizvodjacVMService.cs" />
+    <Compile Include="VMServices\RacunVMService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -276,9 +275,21 @@
     <Content Include="Views\Narudzbenica\Index.cshtml" />
     <Content Include="Views\Proizvodjac\Index.cshtml" />
     <Content Include="Views\Racun\Index.cshtml" />
-    <Content Include="Views\RadnoMjesto\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Klijent\Create.cshtml" />
+    <Content Include="Views\Klijent\Edit.cshtml" />
+    <Content Include="Views\Korisnik\Create.cshtml" />
+    <Content Include="Views\Korisnik\Edit.cshtml" />
+    <Content Include="Views\Lijek\Create.cshtml" />
+    <Content Include="Views\Lijek\Edit.cshtml" />
+    <Content Include="Views\Nabavljac\Edit.cshtml" />
+    <Content Include="Views\Nabavljac\Create.cshtml" />
+    <Content Include="Views\Narudzbenica\Edit.cshtml" />
+    <Content Include="Views\Narudzbenica\Create.cshtml" />
+    <Content Include="Views\Proizvodjac\Edit.cshtml" />
+    <Content Include="Views\Proizvodjac\Create.cshtml" />
+    <Content Include="Views\Racun\Edit.cshtml" />
+    <Content Include="Views\Racun\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -297,7 +308,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Apoteka.BLL\Apoteka.BLL.csproj">
-      <Project>{D0110B63-D4BC-4CDA-98A8-62439A894997}</Project>
+      <Project>{d0110b63-d4bc-4cda-98a8-62439a894997}</Project>
       <Name>Apoteka.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Apoteka.DLL\Apoteka.DLL.csproj">

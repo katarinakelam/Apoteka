@@ -37,7 +37,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public Racun Get(int id)
         {
-            return this.apotekaContext.Racun.Include(n => n.RacunLijek).AsNoTracking().Where(n => n.RacunId == id).FirstOrDefault();
+            return this.apotekaContext.Racun.Include(k => k.Korisnik).Include(k => k.Klijent).Include(n => n.RacunLijek).AsNoTracking().Where(n => n.RacunId == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IEnumerable<Racun> GetAll()
         {
-            return this.apotekaContext.Racun.Include(n => n.RacunLijek).AsNoTracking().AsEnumerable();
+            return this.apotekaContext.Racun.Include(n => n.RacunLijek).Include(k => k.Klijent).AsNoTracking().AsEnumerable();
         }
 
         /// <summary>
@@ -95,7 +95,18 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IQueryable<Racun> GetAllAsQueryable()
         {
-            return this.apotekaContext.Racun.Include(n => n.RacunLijek).AsNoTracking().AsQueryable();
+            return this.apotekaContext.Racun.Include(n => n.RacunLijek).Include(k => k.Klijent).AsNoTracking().AsQueryable();
+        }
+
+        /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        public int GetLast()
+        {
+            return this.apotekaContext.Racun.Max(k => k.RacunId);
         }
 
         #endregion

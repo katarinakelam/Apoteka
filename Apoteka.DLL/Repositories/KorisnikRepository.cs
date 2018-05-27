@@ -37,7 +37,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public Korisnik Get(int id)
         {
-            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(kr => kr.Narudzbenica).AsNoTracking().Where(k => k.KorisnikId == id).FirstOrDefault();
+            return this.apotekaContext.Korisnik.Include(k => k.RadnoMjesto).Include(k => k.Racun).Include(kr => kr.Narudzbenica).AsNoTracking().Where(k => k.KorisnikId == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -104,7 +104,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IEnumerable<Korisnik> GetAll()
         {
-            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(kr => kr.Narudzbenica).AsNoTracking().AsEnumerable();
+            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(k => k.RadnoMjesto).Include(kr => kr.Narudzbenica).AsNoTracking().AsEnumerable();
         }
 
         /// <summary>
@@ -115,9 +115,19 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IQueryable<Korisnik> GetAllAsQueryable()
         {
-            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(kr => kr.Narudzbenica).AsNoTracking().AsQueryable();
+            return this.apotekaContext.Korisnik.Include(k => k.Racun).Include(k => k.RadnoMjesto).Include(kr => kr.Narudzbenica).AsNoTracking().AsQueryable();
         }
 
+        /// <summary>
+        /// Gets the last element identifier.
+        /// </summary>
+        /// <returns>
+        /// Returns the last element identifier.
+        /// </returns>
+        public int GetLast()
+        {
+            return this.apotekaContext.Korisnik.Max(k => k.KorisnikId);
+        }
         #endregion
     }
 }
