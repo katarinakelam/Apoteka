@@ -74,7 +74,7 @@
 
         var id = $(this).find("td:first-child").text();
         $.ajax({
-            url: '@Url.Action("GetNarudzbeForNabavljac", "Nabavljac")',
+            url: '@Url.Action("GetNarudzbeForNabavljaci", "Nabavljac")',
             data: { id: parseInt(id) },
             success: function (partialView) {
                 $("#narudzba").html("");
