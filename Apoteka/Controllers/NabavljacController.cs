@@ -22,19 +22,19 @@ namespace Apoteka.Controllers
         private ApotekaContext apotekaContext;
         private readonly NabavljacService nabavljacService;
         private readonly NabavljacVMService vmService;
+        private readonly NarudzbenicaVMService narudzbenicaVMService;
         #endregion
 
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="NabavljacController"/> class.
         /// </summary>
-        /// <param name="context">The context.</param>
-        /// <param name="repository">The repository.</param>
         public NabavljacController()
         {
             this.apotekaContext = new ApotekaContext();
             this.nabavljacService = new NabavljacService(apotekaContext);
             this.vmService = new NabavljacVMService(apotekaContext);
+            this.narudzbenicaVMService = new NarudzbenicaVMService(apotekaContext);
         }
         #endregion
 
@@ -124,6 +124,14 @@ namespace Apoteka.Controllers
             {
                 return RedirectToAction(nameof(Edit), vm.NabavljacId);
             }
+        }
+
+        public ActionResult GetNarudzbeForNabavljaci(int id)
+        {
+            var narudzbe = this.nabavljacService.GetNarudzbeForNabavljaci(id);
+            var narudzbeniceDTO = this.narudzbenicaVMService.ListModelsToVMs(narudzbe);
+
+            return PartialView("NarudzbenicaPartial", narudzbeniceDTO);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Apoteka.DLL;
 using Apoteka.DLL.Repositories;
 using Apoteka.Model.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,6 +97,19 @@ namespace Apoteka.BLL.BusinessServices
             return this.klijentRepository.GetAllAsQueryable();
         }
 
+        /// <summary>
+        /// Gets the racuni for klijent.
+        /// </summary>
+        /// <param name="id">The klijent identifier.</param>
+        /// <returns>
+        /// Returns the racuni for klijent
+        /// </returns>
+        public List<Racun> GetRacuniForKlijent(int klijentId)
+        {
+            var racuni = this.apotekaContext.Racun.Include(r => r.Korisnik).Include(r => r.Klijent).Where(r => r.KlijentId == klijentId).ToList();
+
+            return racuni;
+        }
         #endregion
     }
 }

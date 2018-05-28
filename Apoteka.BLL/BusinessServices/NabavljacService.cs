@@ -1,6 +1,7 @@
 ﻿using Apoteka.DLL;
 using Apoteka.DLL.Repositories;
 using Apoteka.Model.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,6 +97,20 @@ namespace Apoteka.BLL.BusinessServices
         public void Update(Nabavljac model)
         {
             this.nabavljacRepository.Update(model);
+        }
+
+        /// <summary>
+        /// Gets the narudzbe for nabavljaci.
+        /// </summary>
+        /// <param name="nabavljacId">The nabavljac identifier.</param>
+        /// <returns>
+        /// Returns the narudzbe for nabavljaci.
+        /// </returns>
+        public List<Narudzbenica> GetNarudzbeForNabavljaci(int nabavljacId)
+        {
+            var narudzbenice= this.apotekaContext.Narudzbenica.Include(r => r.Korisnik).Include(r => r.Nabavljac).Where(r => r.NabavljacId == nabavljacId).ToList();
+
+            return narudzbenice;
         }
         #endregion
     }

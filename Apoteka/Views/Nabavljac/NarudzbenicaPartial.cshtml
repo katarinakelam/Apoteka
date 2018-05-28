@@ -1,0 +1,37 @@
+﻿@model List<Apoteka.ViewModels.NarudzbenicaVM>
+
+<table class="table">
+    <tr>
+        <th>
+            Datum i vrijeme izdavanja
+        </th>
+        <th>
+            Adresa dostave
+        </th>
+        <th>
+            Korisnik
+        </th>
+        <th>
+            Nabavljac
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumIvrijemeIzdavanja)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdresaDostave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KorisnikNaziv)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NabavljacNaziv)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -37,7 +37,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public Klijent Get(int id)
         {
-            return this.apotekaContext.Klijent.Include(k => k.Racun).AsNoTracking().Where(k => k.KlijentId == id).FirstOrDefault();
+            return this.apotekaContext.Klijent.Where(k => k.KlijentId == id).FirstOrDefault();
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IEnumerable<Klijent> GetAll()
         {
-            return this.apotekaContext.Klijent.Include(k => k.Racun).AsNoTracking().AsEnumerable();
+            return this.apotekaContext.Klijent.AsNoTracking().AsEnumerable();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IQueryable<Klijent> GetAllAsQueryable()
         {
-            return this.apotekaContext.Klijent.Include(k => k.Racun).AsNoTracking().AsQueryable();
+            return this.apotekaContext.Klijent.AsNoTracking().AsQueryable();
         }
 
         /// <summary>

@@ -84,7 +84,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IEnumerable<Racun> GetAll()
         {
-            return this.apotekaContext.Racun.Include(n => n.RacunLijek).Include(k => k.Klijent).AsNoTracking().AsEnumerable();
+            return this.apotekaContext.Racun.Include(n => n.RacunLijek).Include(k => k.Korisnik).Include(k => k.Klijent).AsNoTracking().AsEnumerable();
         }
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public IQueryable<Racun> GetAllAsQueryable()
         {
-            return this.apotekaContext.Racun.Include(n => n.RacunLijek).Include(k => k.Klijent).AsNoTracking().AsQueryable();
+            return this.apotekaContext.Racun.Include(n => n.RacunLijek).Include(k => k.Korisnik).Include(k => k.Klijent).AsNoTracking().AsQueryable();
         }
 
         /// <summary>

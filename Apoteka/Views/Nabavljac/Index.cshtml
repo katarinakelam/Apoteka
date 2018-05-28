@@ -10,36 +10,78 @@
 <p>
     @Html.ActionLink("Stvori", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Naziv
-        </th>
-        <th>
-            Adresa
-        </th>
-        <th>
-            IBAN
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Naziv)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Adresa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Iban)
-        </td>
-        <td>
-            @Html.ActionLink("Uredi", "Edit", new {  id=item.NabavljacId  }) |
-            @Html.ActionLink("Izbriši", "Delete", new {  id=item.NabavljacId  })
-        </td>
-    </tr>
-}
-
+<table id="nabavljacTable">
+    <thead>
+        <tr>
+            <th>
+                Redni broj
+            </th>
+            <th>
+                Naziv
+            </th>
+            <th>
+                Adresa
+            </th>
+            <th>
+                IBAN
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NabavljacId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naziv)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Adresa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Iban)
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.NabavljacId }) |
+                    @Html.ActionLink("Izbriši", "Delete", new { id = item.NabavljacId })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+<div id="narudzba">
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/datatables")
+<script>
+
+    $(document).ready(function () {
+
+        var table = $("#nabavljacTable").DataTable();
+
+        $("#nabavljacTable").on('click', 'tr', function () {
+
+            $('#nabavljacTable tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        var id = $(this).find("td:first-child").text();
+        $.ajax({
+            url: '@Url.Action("GetNarudzbeForNabavljac", "Nabavljac")',
+            data: { id: parseInt(id) },
+            success: function (partialView) {
+                $("#narudzba").html("");
+                $("#narudzba").append(partialView);
+            }
+        });
+    });
+});
+</script>
+

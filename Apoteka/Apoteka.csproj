@@ -296,6 +296,8 @@
     <Content Include="Views\RadnoMjesto\Index.cshtml" />
     <Content Include="Views\RadnoMjesto\Create.cshtml" />
     <Content Include="Views\RadnoMjesto\Edit.cshtml" />
+    <Content Include="Views\Klijent\RacunPartial.cshtml" />
+    <Content Include="Views\Nabavljac\NarudzbenicaPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

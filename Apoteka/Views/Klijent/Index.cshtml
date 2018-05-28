@@ -1,4 +1,5 @@
 ﻿@model List<Apoteka.ViewModels.KlijentVM>
+@using Apoteka.ViewModels;
 
 @{
     ViewBag.Title = "Prikaz klijenata";
@@ -10,41 +11,84 @@
 <p>
     @Html.ActionLink("Stvori", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Ime
-        </th>
-        <th>
-            Prezime
-        </th>
-        <th>
-            Datum rođenja
-        </th>
-        <th>
-            Broj zdravstvene iskaznice
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prezime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DatumRodjenja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BrojZdravstveneIskaznice)
-        </td>
-        <td>
-            @Html.ActionLink("Uredi", "Edit", new {  id=item.KlijentId}) |
-            @Html.ActionLink("Izbriši", "Delete", new { id = item.KlijentId })
-        </td>
-    </tr>
-}
+<table id="tableKlijent">
+    <thead>
+        <tr>
+            <th>
+                Redni broj
+            </th>
+            <th>
+                Ime
+            </th>
+            <th>
+                Prezime
+            </th>
+            <th>
+                Datum rođenja
+            </th>
+            <th>
+                Broj zdravstvene iskaznice
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="klijent">
+                <td>
+                    @Html.DisplayFor(modelItem => item.KlijentId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prezime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DatumRodjenja)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BrojZdravstveneIskaznice)
+                    @Html.ActionLink("Uredi", "Edit", new { id = item.KlijentId }) |
+                    @Html.ActionLink("Izbriši", "Delete", new { id = item.KlijentId })
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
+<div id="racun">
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/datatables")
+<script>
+
+    $(document).ready(function () {
+
+    var table = $("#tableKlijent").DataTable();
+
+    $("#tableKlijent").on('click', 'tr', function () {
+
+        $('#tableKlijent tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+        var id = $(this).find("td:first-child").text();
+        $.ajax({
+            url: '@Url.Action("GetRacuniForKlijent", "Klijent")',
+            data: { id: parseInt(id) },
+            success: function (partialView) {
+                $("#racun").html("");
+                $("#racun").append(partialView);
+            }
+        });
+    });
+});
+</script>

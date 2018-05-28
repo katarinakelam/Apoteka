@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 
 namespace Apoteka.Controllers
 {
@@ -21,6 +22,7 @@ namespace Apoteka.Controllers
         #region Properties
         private ApotekaContext apotekaContext;
         private readonly KlijentService klijentService;
+        private readonly RacunVMService racunVMService;
         private readonly KlijentVMService vmService;
         #endregion
 
@@ -34,6 +36,7 @@ namespace Apoteka.Controllers
         {
             this.apotekaContext = new ApotekaContext();
             this.klijentService = new KlijentService(apotekaContext);
+            this.racunVMService = new RacunVMService(apotekaContext);
             this.vmService = new KlijentVMService();
         }
         #endregion
@@ -124,6 +127,14 @@ namespace Apoteka.Controllers
             {
                 return RedirectToAction(nameof(Edit), vm.KlijentId);
             }
+        }
+
+        public ActionResult GetRacuniForKlijent(int id)
+        {
+            var racuni = this.klijentService.GetRacuniForKlijent(id);
+            var racuniDTO = this.racunVMService.ListModelsToVMs(racuni);
+
+            return PartialView("RacunPartial", racuniDTO);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Apoteka.Controllers
     {
         #region Properties
         private ApotekaContext apotekaContext;
-        private readonly radnoMjestoServiceService radnoMjestoService;
+        private readonly RadnoMjestoService radnoMjestoService;
         private readonly RadnoMjestoVMService vmService;
         #endregion
 
