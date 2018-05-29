@@ -3,6 +3,9 @@
 <table class="table">
     <tr>
         <th>
+            Redni broj narudžbenice
+        </th>
+        <th>
             Datum i vrijeme izdavanja
         </th>
         <th>
@@ -12,13 +15,16 @@
             Korisnik
         </th>
         <th>
-            Nabavljac
+            Nabavljač
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NarudzbenicaId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DatumIvrijemeIzdavanja)
             </td>

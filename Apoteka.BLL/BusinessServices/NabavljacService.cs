@@ -10,7 +10,7 @@ using System.Text;
 namespace Apoteka.BLL.BusinessServices
 {
     /// <summary>
-    /// Nabavljac business service
+    /// Nabavljac business serviceC:\Users\Katarina\Source\Repos\Apoteka\Apoteka.BLL\BusinessServices\NabavljacService.cs
     /// </summary>
     /// <seealso cref="Apoteka.BLL.BusinessServices.IService{Apoteka.Model.Models.Nabavljac}" />
     public class NabavljacService : IService<Nabavljac>
