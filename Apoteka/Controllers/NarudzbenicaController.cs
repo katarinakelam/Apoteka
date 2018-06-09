@@ -120,6 +120,7 @@ namespace Apoteka.Controllers
                 }
                 catch
                 {
+                    PrepareDropDownLists();
                     return View(vm);
                 }
             }

@@ -36,7 +36,7 @@ namespace Apoteka.DLL.Repositories
         /// </returns>
         public Proizvodjac Get(int id)
         {
-            return this.apotekaContext.Proizvodjac.Include(n => n.Lijek).AsNoTracking().Where(n => n.ProizvodjacId == id).FirstOrDefault();
+            return this.apotekaContext.Proizvodjac.Where(n => n.ProizvodjacId == id).FirstOrDefault();
         }
 
         /// <summary>

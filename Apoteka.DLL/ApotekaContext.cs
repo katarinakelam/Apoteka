@@ -27,6 +27,20 @@ namespace Apoteka.DLL
         public virtual DbSet<RadnoMjesto> RadnoMjesto { get; set; }
         #endregion
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApotekaContext"/> class.
+        /// </summary>
+        public ApotekaContext()
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApotekaContext"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        public ApotekaContext(DbContextOptions<ApotekaContext> options)
+            : base(options)
+        { }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
