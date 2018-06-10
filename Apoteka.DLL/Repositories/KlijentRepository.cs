@@ -83,7 +83,9 @@ namespace Apoteka.DLL.Repositories
             }
 
             this.apotekaContext.Klijent.Remove(model);
-            this.apotekaContext.SaveChanges();
+
+            //Dio koda koji uzrokuje pad testa kada je zakomentiran!!!!
+            //this.apotekaContext.SaveChanges();
         }
 
         /// <summary>
